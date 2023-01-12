@@ -11,10 +11,25 @@ function generatePasswords() {
     let characterB = characters[Math.floor(Math.random() * characters.length)]
     passwordOneArray.push(characterA)
     passwordTwoArray.push(characterB)
-    console.log(passwordOneArray)
   }
   let passOne = document.getElementById("pass-one")
   let passTwo = document.getElementById("pass-two")
   passOne.textContent = passwordOneArray.join("")
   passTwo.textContent = passwordTwoArray.join("")
+}
+
+function copyToClipboard(number) {
+  // let password = document.getElementById("pass-one")
+  let passwordEl = ""
+  if (number === 1) {
+    passwordEl = document.getElementById("pass-one")
+  } else {
+    passwordEl = document.getElementById("pass-two")
+  }
+  let password = passwordEl.innerHTML
+  navigator.clipboard.writeText(password)
+  passwordEl.textContent = "Copied to clipboard"
+  setTimeout(() => {
+    passwordEl.textContent = password
+  }, 1000);
 }
